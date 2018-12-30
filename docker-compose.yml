@@ -1,0 +1,56 @@
+﻿version: '3.4'
+
+services:
+  gameapi:
+    image: ${DOCKER_REGISTRY-}gameapi
+    build:
+      context: .
+      dockerfile: GameApi/Dockerfile
+    expose:
+      - "8001"
+      
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: .
+      dockerfile: Gateway/Dockerfile
+    ports:
+      - "5000:5000"
+      
+  mongodb:
+    image: mongo:latest
+    expose:
+      - "27017"
+      
+  matchapi:
+    image: ${DOCKER_REGISTRY-}matchapi
+    build:
+      context: .
+      dockerfile: MatchApi/Dockerfile
+    expose:
+      - "8002"
+
+  playerapi:
+    image: ${DOCKER_REGISTRY-}playerapi
+    build:
+      context: .
+      dockerfile: Players/Dockerfile
+    expose:
+      - "8003"
+      
+  teamapi:
+    image: ${DOCKER_REGISTRY-}teamapi
+    build:
+      context: .
+      dockerfile: TeamApi/Dockerfile
+    expose:
+      - "8004"
+
+  tournamentapi:
+    image: ${DOCKER_REGISTRY-}tournamentapi
+    build:
+      context: .
+      dockerfile: TournamentApi/Dockerfile
+    expose:
+      - "8005"
+
